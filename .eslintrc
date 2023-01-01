@@ -1,0 +1,83 @@
+{
+	"env": {
+		"browser": true,
+		"es6": true,
+		"node": true,
+		"jquery": true
+	},
+	"extends": [
+		"eslint:recommended",
+		"airbnb",
+		"plugin:react/recommended",
+		"plugin:import/recommended",
+		"plugin:jsx-a11y/recommended",
+		"plugin:react-hooks/recommended",
+		"prettier"
+	],
+	"globals": {
+		"Vue": true
+	},
+	"parser": "@babel/eslint-parser",
+	"plugins": [
+		"react"
+	],
+	"rules": {
+		"semi": "off",
+		"no-console": "error",
+		"no-plusplus": "off",
+		"eol-last": 0,
+		"max-len": [
+			"error",
+			120,
+			{
+				"ignoreUrls": true
+			}
+		],
+		"no-tabs": "off",
+		"no-alert": "off",
+		"prefer-destructuring": "off",
+		"indent": [
+			2,
+			4
+		],
+		"react/prop-types": 0,
+		"react/jsx-indent": [
+			2,
+			4
+		],
+		"react/jsx-indent-props": [
+			2,
+			4
+		],
+		"no-param-reassign": "off",
+		"react/jsx-filename-extension": [
+			1,
+			{
+				"extensions": [
+					".js",
+					".jsx"
+				]
+			}
+		],
+		"react/state-in-constructor": [
+			"off"
+		],
+		"react/static-property-placement": [
+			"off"
+		],
+		"react/destructuring-assignment": "off",
+		"jsx-a11y/no-autofocus": 0,
+		"react/jsx-props-no-spreading": 0,
+		"react/prefer-stateless-function": 0,
+		"jsx-a11y/label-has-associated-control": 0,
+		"class-methods-use-this": 0
+	},
+	"parserOptions": {
+		"requireConfigFile": false,
+		"babelOptions": {
+			"presets": [
+				"@babel/preset-react"
+			]
+		}
+	}
+}

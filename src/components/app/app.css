@@ -1,0 +1,13 @@
+@import '~antd/dist/antd.css';
+
+.app {
+    padding: 13px 36px 14px 36px;
+}
+
+.app__bad-query {
+    margin-top: 100px;
+    font-size: 24px;
+    text-align: center;
+}
+
+;

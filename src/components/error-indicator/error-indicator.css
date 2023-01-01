@@ -1,0 +1,26 @@
+.error-indicator {
+    padding-top: 5%;
+    text-align: center;
+    color: brown;
+    font-size: 36px;
+}
+
+.icon {
+    width: 300px;
+}
+
+.oops {
+    width: 100%;
+    font-size: 80px;
+    margin: 0;
+}
+
+
+element.style {
+    gap: 8px;
+}
+
+.ant-space-vertical {
+    flex-direction: column;
+    width: 100%;
+}
