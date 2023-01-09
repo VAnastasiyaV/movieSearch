@@ -1,0 +1,9 @@
+ul.ant-rate {
+    margin: 10px;
+}
+
+@media (max-width: 760px) {
+    ul.ant-rate {
+        margin: 0px;
+    }
+}

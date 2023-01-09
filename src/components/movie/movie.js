@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import store from 'store';
 import { format, parseISO } from 'date-fns';
 import { Tag, Card } from 'antd';
 import RateStars from '../rate-stars';
@@ -48,7 +47,6 @@ export default class Movie extends Component {
                             }
                         })
                     });
-
 
                     const genres = movieGenres.map((genre) => (
                         <Tag className="movie__tag" key={genre}>
