@@ -37,11 +37,9 @@ export default class App extends Component {
             this.setState({
                 guestSessionId: store.get('guestSessionId'),
             });
-
-            this.getGenresList();
-            this.getTopRated();
         }
-
+        this.getGenresList();
+        this.getTopRated();
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -216,6 +214,8 @@ export default class App extends Component {
         }
 
         if (error) {
+            // eslint-disable-next-line no-console 
+            console.log(error);
             return <ErrorIndicator />
         }
 

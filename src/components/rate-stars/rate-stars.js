@@ -31,7 +31,6 @@ export default class RateStars extends Component {
         const { rating } = this.state;
         return (
             <Rate
-                allowHalf
                 allowClear
                 count={10}
                 value={rating}

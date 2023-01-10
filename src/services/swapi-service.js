@@ -4,29 +4,13 @@ export default class SwapiService {
 
     apiKey = '40ff226e70405a604d919f20e3d02db8';
 
-    // async getData(url) {
-    // 	try {
-    // 	    const res = await fetch(url);
-    // 	    if (!res.ok) {
-    // 		throw new Error(`Could not fetch ${url}` +
-    // 			`, received ${res.status}`)
-    // 	    }
-    // 	    return await res.json();
-    // 	} catch (err) {
-    // 	  // eslint-disable-next-line no-console
-    // 	  console.error('Возникла проблема с fetch запросом: ', err.message);
-    // 	  return err.message;
-    // 	}
-    //   };
-
-
     async getResource(url) {
         try {
             const res = await fetch(`${this.apiBase}${url}`);
 
             if (!res.ok) {
                 throw new Error(`Could not fetch ${url}` +
-					`, received ${res.status}`)
+                    `, received ${res.status}`)
             }
             const result = await res.json();
             return result
