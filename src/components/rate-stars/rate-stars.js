@@ -24,6 +24,7 @@ export default class RateStars extends Component {
             this.SwapiService.setRatingMovie(id, guestSessionId, rate).then(() => {
                 this.setState({
                     rating: rate,
+                    loading: true
                 });
                 store.set(`${id}`, `${rate}`);
             })
