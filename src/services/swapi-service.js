@@ -59,6 +59,12 @@ export default class SwapiService {
             method: 'POST',
             headers: { 'Content-Type': 'application/json;charset=utf-8' },
             body: JSON.stringify({ value: rating }),
+        }).then((res) => {
+            if (res.status <= 200 || res.status > 300) {
+                const error = new Error(res.statusText);
+                error.response = res;
+                throw error
+            }
         })
     }
 

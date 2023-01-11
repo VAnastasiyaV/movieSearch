@@ -31,7 +31,8 @@ export default class App extends Component {
     };
 
     componentDidMount() {
-        if (!store.get('guestSessionId')) {
+        if (!store.get('guestSessionId') || store.get('guestSessionId') === `undefined`) {
+            store.clearAll();
             this.createGuestSession();
         } else {
             this.setState({
@@ -48,6 +49,7 @@ export default class App extends Component {
         }
     }
 
+    // eslint-disable-next-line no-unused-expressions
     componentDidCatch(error, info) {
         // eslint-disable-next-line no-console 
         console.error(info.componentStack);

@@ -7,3 +7,13 @@ ul.ant-rate {
         margin: 0px;
     }
 }
+
+.rate-stars__errorMessage {
+    font-size: 11px;
+    color: grey;
+    border: 1px solid rgba(243, 2, 2, 0.37);
+    border-radius: 2px;
+    position: absolute;
+    right: 0;
+    bottom: -15px;
+}

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import store from 'store';
 import PropTypes from 'prop-types';
 import { Rate } from 'antd';
@@ -12,32 +12,47 @@ export default class RateStars extends Component {
     state = {
         // eslint-disable-next-line react/destructuring-assignment
         rating: store.get(`${this.props.id}`) || '0',
+        loading: true
     };
 
     setMovieRating = (rate) => {
         const { guestSessionId, id } = this.props;
-        this.setState({
-            rating: rate,
-        });
+
         if (Number(rate) === 0) {
             this.SwapiService.deleteRatingMovie(id, guestSessionId);
         } else {
-            this.SwapiService.setRatingMovie(id, guestSessionId, rate);
+            this.SwapiService.setRatingMovie(id, guestSessionId, rate).then(() => {
+                this.setState({
+                    rating: rate,
+                });
+                store.set(`${id}`, `${rate}`);
+            })
+                .catch(() => {
+                    this.setState({
+                        loading: false
+                    })
+                });
         }
-        store.set(`${id}`, `${rate}`);
     };
 
     render() {
-        const { rating } = this.state;
+        const { rating, loading } = this.state;
+        const ErrorMessage = loading
+            ? null
+            // eslint-disable-next-line react/no-unescaped-entities
+            : <div className='rate-stars__errorMessage'>Request error. The film can't be rated.</div>
         return (
-            <Rate
-                allowClear
-                count={10}
-                value={rating}
-                onChange={(rate) => {
-                    this.setMovieRating(rate);
-                }}
-            />
+            <>
+                <Rate
+                    allowClear
+                    count={10}
+                    value={rating}
+                    onChange={(rate) => {
+                        this.setMovieRating(rate);
+                    }}
+                />
+                {ErrorMessage}
+            </>
         );
     }
 }
