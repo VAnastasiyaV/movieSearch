@@ -11,7 +11,7 @@ export default class Movie extends Component {
 
     shorten = (string, maxLength = 200, separator = ' ') => {
         if (string.length <= maxLength) return string;
-        return string.substr(0, string.lastIndexOf(separator, maxLength));
+        return `${string.substr(0, string.lastIndexOf(separator, maxLength))}...`;
     }
 
     render() {
@@ -60,7 +60,7 @@ export default class Movie extends Component {
                                 src={`https://image.tmdb.org/t/p/w500/${image}`}
                                 alt={`poster of ${title}`} />
                             <p className="movie-title">{title}</p>
-                            <span className={popularClass.join(' ')}>{popularity}</span>
+                            <span className={popularClass.join(' ')}>{Math.floor(popularity * 10) / 10}</span>
                             <span className="movie-date">{releaseDate}</span>
                             <div className="movie-genres">
                                 {genres}

@@ -24,6 +24,8 @@ export default class App extends Component {
         error: null,
         loading: true,
         currentPage: 1,
+        pageTab1: 1,
+        pageTab2: 1,
         totalPages: 0,
         search: true,
         guestSessionId: '',
@@ -162,10 +164,11 @@ export default class App extends Component {
     };
 
     changeTabs = (key) => {
+        const { pageTab1, pageTab2 } = this.state;
         if (key === '1') {
             this.setState({
                 tabPane: key,
-                currentPage: 1
+                currentPage: pageTab1
             },
             () => {
                 this.getTopRated()
@@ -173,7 +176,7 @@ export default class App extends Component {
         } else {
             this.setState({
                 tabPane: key,
-                currentPage: 1
+                currentPage: pageTab2
             },
             () => {
                 this.getRatedMovies()
@@ -183,31 +186,38 @@ export default class App extends Component {
 
     changePage = (page) => {
         const { tabPane } = this.state;
-        this.setState(
-            {
-                currentPage: page
-            },
-            () => {
-                if (tabPane === '1') {
-                    this.searchMovies();
-                } else {
-                    this.getRatedMovies();
-                }
-            }
-        );
+        if (tabPane === '1') {
+            this.setState(
+                {
+                    pageTab1: page,
+                    currentPage: page
+                },
+                () => this.searchMovies()
+            )
+        } else {
+            this.setState(
+                {
+                    pageTab2: page,
+                    currentPage: page
+                },
+                () => this.getRatedMovies()
+            )
+        }
     };
 
     render() {
 
         const { error, loading, genresList,
             movies, ratedMovies, tabPane,
-            currentPage, totalPages,
+            currentPage, totalPages, searchQuery,
             moviesPerPage, guestSessionId } = this.state;
 
         const movieFromBase = tabPane === '1' ? movies : ratedMovies;
         const search = tabPane === '1' ?
-            <SearchBar searchQueryChange={this.searchQueryChange}
-                search={this.state.search} /> :
+            <SearchBar
+                searchQueryChange={this.searchQueryChange}
+                search={this.state.search}
+                searchQuery={searchQuery} /> :
             null;
         let contain;
 

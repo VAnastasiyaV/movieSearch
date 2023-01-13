@@ -17,20 +17,22 @@ export default class RateStars extends Component {
 
     setMovieRating = (rate) => {
         const { guestSessionId, id } = this.props;
-
+        this.setState({
+            rating: rate
+        });
         if (Number(rate) === 0) {
             this.SwapiService.deleteRatingMovie(id, guestSessionId);
         } else {
             this.SwapiService.setRatingMovie(id, guestSessionId, rate).then(() => {
                 this.setState({
-                    rating: rate,
                     loading: true
                 });
                 store.set(`${id}`, `${rate}`);
             })
                 .catch(() => {
                     this.setState({
-                        loading: false
+                        rating: 0,
+                        loading: false,
                     })
                 });
         }

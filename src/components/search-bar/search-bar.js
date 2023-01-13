@@ -7,14 +7,13 @@ import './search-bar.css';
 
 export default class SearchBar extends Component {
     state = {
-        label: '',
+        label: this.props.searchQuery,
     }
 
     debouncedChangeHandler =
         debounce(() => {
             this.props.searchQueryChange(this.state.label)
         }, 2000);
-
 
     changeHandler = (e) => {
         this.setState({
