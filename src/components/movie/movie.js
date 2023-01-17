@@ -4,15 +4,11 @@ import { format, parseISO } from 'date-fns';
 import { Tag, Card } from 'antd';
 import RateStars from '../rate-stars';
 import { GenresConsumer } from '../genres-context';
+import ShortString from '../short-string';
 
 import './movie.css';
 
 export default class Movie extends Component {
-
-    shorten = (string, maxLength = 200, separator = ' ') => {
-        if (string.length <= maxLength) return string;
-        return `${string.substr(0, string.lastIndexOf(separator, maxLength))}...`;
-    }
 
     render() {
         const {
@@ -21,7 +17,7 @@ export default class Movie extends Component {
 
         const releaseDate = year ? format(parseISO(year), 'MMMM dd, yyyy') : 'no release date';
 
-        const shortDescrip = this.shorten({ description }.description, 200) || 'no description';
+        const shortDescrip = ShortString({ description }.description, 200) || 'no description';
 
         const popularClass = ['movie-popular']
         if (popularity >= 3 && popularity < 5) {
